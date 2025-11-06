@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultados - HandLingo</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header class="lesson-header">
+        <button class="back-btn" id="back-btn">← Voltar às Lições</button>
+    </header>
+    
+    <main class="results-content">
+        <div class="results-container">
+            <div class="results-header">
+                <div class="result-icon-large" id="result-icon">🎉</div>
+                <h2 id="results-title">Parabéns!</h2>
+                <p id="results-message">Você completou a lição!</p>
+            </div>
+            
+            <div class="results-stats-grid">
+                <div class="result-stat-card">
+                    <div class="stat-icon">📊</div>
+                    <div class="stat-info">
+                        <span class="stat-label">Pontuação</span>
+                        <span class="stat-value" id="results-score">0%</span>
+                    </div>
+                </div>
+                <div class="result-stat-card">
+                    <div class="stat-icon">✅</div>
+                    <div class="stat-info">
+                        <span class="stat-label">Acertos</span>
+                        <span class="stat-value" id="results-correct">0/0</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="chart-container">
+                <canvas id="results-chart"></canvas>
+            </div>
+            
+            <button class="btn-primary" id="back-to-lessons-btn">Voltar às Lições</button>
+        </div>
+    </main>
+
+    <script src="results.js"></script>
+</body>
+</html>
+
