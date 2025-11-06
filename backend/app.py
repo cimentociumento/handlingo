@@ -20,15 +20,6 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 CORS(app)
 
-# Inicializar banco de dados mesmo quando rodando via Gunicorn
-try:
-    with app.app_context():
-        db.create_all()
-        print("✅ Banco de dados inicializado (SQLite)")
-except Exception as e:
-    # Evitar falha do servidor por erro de inicialização
-    print(f"⚠️ Erro ao inicializar banco de dados: {e}")
-
 # Modelos
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -899,6 +890,14 @@ def health_check():
         'service': 'HandLingo API',
         'timestamp': datetime.utcnow().isoformat()
     })
+
+# Garantir que as tabelas existam quando rodando via Gunicorn (Render)
+try:
+    with app.app_context():
+        db.create_all()
+        print("✅ Tabelas do banco verificadas/criadas (SQLite)")
+except Exception as e:
+    print(f"⚠️ Erro ao criar/verificar tabelas: {e}")
 
 if __name__ == '__main__':
     with app.app_context():
