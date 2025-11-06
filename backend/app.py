@@ -606,7 +606,7 @@ LESSONS = [
         "title": "Família Estendida",
         "category": "Pessoas",
         "difficulty": 3,
-        "signs": [27, 28, 34, 35, 36, 37, 38, 39, 40, 41, 68],
+        "signs": [27, 28, 34, 35, 36, 37, 38, 39, 40, 41],
         "description": "Parentes mais distantes e relacionamentos"
     },
     {
@@ -657,6 +657,14 @@ LESSONS = [
         "signs": [63, 64, 65, 66, 67],
         "description": "Sentimentos mais complexos"
     },
+    {
+        "id": 10,
+        "title": "Comunicação",
+        "category": "Comunicação",
+        "difficulty": 3,
+        "signs": [68],
+        "description": "Sinais relacionados à comunicação"
+    }
 ]
 
 # Rotas da API
@@ -864,8 +872,13 @@ if __name__ == '__main__':
         print("=" * 50)
         print("🤟 HandLingo Backend iniciado!")
         print("=" * 50)
-        print("Servidor rodando em: http://localhost:5000")
-        print("API disponível em: http://localhost:5000/api")
+        
+        # Configurar porta para produção
+        port = int(os.environ.get("PORT", 5000))
+        debug_mode = os.environ.get("FLASK_ENV") != "production"
+        
+        print(f"Servidor rodando na porta: {port}")
+        print("API disponível")
         
         # Verificar status do VLibras
         try:
@@ -875,10 +888,9 @@ if __name__ == '__main__':
                 print("✅ VLibras Translator: ATIVO")
             else:
                 print("⚠️ VLibras Translator: NÃO DISPONÍVEL")
-                print("   Execute: install_vlibras.bat (Windows) ou install_vlibras.sh (Linux/Mac)")
         except Exception as e:
             print(f"⚠️ VLibras Translator: NÃO CONFIGURADO ({e})")
         
         print("=" * 50)
-    app.run(debug=True, port=5000, host='0.0.0.0')
+    app.run(debug=debug_mode, port=port, host='0.0.0.0')
 
