@@ -47,8 +47,10 @@
    ```
    Name: handlingo-app
    Environment: Python
-   Build Command: cd backend && pip install -r requirements.txt
-   Start Command: cd backend && gunicorn app:app --bind 0.0.0.0:$PORT
+   Build Command: cd backend; pip install -r requirements.txt
+   Start Command: cd backend; gunicorn app:app --bind 0.0.0.0:$PORT
+
+> ⚠️ **Importante:** No Windows local, use `;` em vez de `&&`. No Render (Linux), ambos funcionam.
    ```
 
 4. **Configurações avançadas:**

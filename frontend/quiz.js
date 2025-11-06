@@ -1,5 +1,5 @@
 // Configuração
-const API_BASE_URL = 'http://localhost:5000/api';
+const API_BASE_URL = 'https://handlingo.onrender.com/api';
 const FALLBACK_VIDEO_URL = 'https://www.youtube.com/embed/dQw4w9WgXcQ';
 
 // Função para converter URLs do YouTube para formato embed ou retornar vídeo local
@@ -40,7 +40,7 @@ function createVideoElement(videoUrl) {
     
     // Se é vídeo local (mp4), usar tag <video>
     if (url.endsWith('.mp4') || url.endsWith('.MP4') || url.startsWith('/static/')) {
-        const fullUrl = url.startsWith('/static/') ? `http://localhost:5000${url}` : url;
+        const fullUrl = url.startsWith('/static/') ? `https://handlingo.onrender.com${url}` : url;
         return `<video controls autoplay loop muted playsinline class="video-player">
                     <source src="${fullUrl}" type="video/mp4">
                     Seu navegador não suporta vídeos.

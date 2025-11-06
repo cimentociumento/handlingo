@@ -1,3 +1,6 @@
+// Configuração da API
+const API_BASE_URL = 'https://handlingo.onrender.com/api';
+
 // Inicialização
 document.addEventListener('DOMContentLoaded', () => {
     // Verificar se usuário está logado
