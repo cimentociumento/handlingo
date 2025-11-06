@@ -866,6 +866,31 @@ def serve_static(path):
     """Servir arquivos estáticos (vídeos)"""
     return send_from_directory('static', path)
 
+@app.route('/')
+def index():
+    """Rota raiz - página inicial da API"""
+    return jsonify({
+        'message': '🤟 Bem-vindo ao HandLingo API!',
+        'version': '1.0.0',
+        'endpoints': {
+            'signs': '/api/signs',
+            'categories': '/api/categories',
+            'lessons': '/api/lessons',
+            'users': '/api/users',
+            'health': '/health'
+        },
+        'status': 'online'
+    })
+
+@app.route('/health')
+def health_check():
+    """Health check para monitoramento"""
+    return jsonify({
+        'status': 'healthy',
+        'service': 'HandLingo API',
+        'timestamp': datetime.utcnow().isoformat()
+    })
+
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
