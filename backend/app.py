@@ -20,6 +20,15 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 CORS(app)
 
+# Inicializar banco de dados mesmo quando rodando via Gunicorn
+try:
+    with app.app_context():
+        db.create_all()
+        print("✅ Banco de dados inicializado (SQLite)")
+except Exception as e:
+    # Evitar falha do servidor por erro de inicialização
+    print(f"⚠️ Erro ao inicializar banco de dados: {e}")
+
 # Modelos
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
